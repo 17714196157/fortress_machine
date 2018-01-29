@@ -1,5 +1,5 @@
-from fortress_machine.settings import BASE_DIR
 import sys,os
+BASE_DIR= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 
 #脚本可以使用django的数据库以及其他模块 ，之前必须加上环境变量
@@ -76,7 +76,7 @@ class Interface(object):
                 sshlogin_cmd = '''sshpass -p {linux_passwd} ssh {linux_username}@{linux_ip} -o "StrictHostKeyChecking no"  '''.format(
                         linux_ip=linux_ip,linux_passwd=linux_passwd,linux_username=linux_username)
                 print("sshlogin_cmd:",sshlogin_cmd)
-                #subprocess.run(sshlogin_cmd)
+                subprocess.run(sshlogin_cmd,shell=True)
             else:
                 self.Hostgroupmenu_interactive()
         else:
